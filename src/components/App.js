@@ -9,7 +9,7 @@ class App extends Component {
   state = { videos: [], selectedVideo: null };
 
   componentDidMount() {
-    this.onTermSubmit("programming");
+    this.onTermSubmit("Javascript");
   }
 
   onTermSubmit = async (term) => {
@@ -24,11 +24,20 @@ class App extends Component {
     });
   };
 
+  onVideoSelect = (video) => {
+    this.setState({
+      selectedVideo: video,
+    });
+  };
+
   render() {
     return (
       <div className='ui container' style={{ marginTop: "10px" }}>
         <SearchBar onFormTermSubmit={this.onTermSubmit} />
-        <VideoList videos={this.state.videos} />
+        <VideoList
+          onSelectedVideo={this.onVideoSelect}
+          videos={this.state.videos}
+        />
       </div>
     );
   }
