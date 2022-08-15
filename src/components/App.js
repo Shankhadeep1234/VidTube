@@ -4,6 +4,7 @@ import youtube from "../apis/youtube";
 
 import SearchBar from "./SearchBar";
 import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 
 class App extends Component {
   state = { videos: [], selectedVideo: null };
@@ -32,12 +33,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className='ui container' style={{ marginTop: "10px" }}>
+      <div className='ui container'>
         <SearchBar onFormTermSubmit={this.onTermSubmit} />
-        <VideoList
-          onSelectedVideo={this.onVideoSelect}
-          videos={this.state.videos}
-        />
+        <div className='ui grid'>
+          <div className='ui row'>
+            <div className='eleven wide column'>
+              <VideoDetail video={this.state.selectedVideo} />
+            </div>
+            <div className='five wide column'>
+              <VideoList
+                onSelectedVideo={this.onVideoSelect}
+                videos={this.state.videos}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
